@@ -8,6 +8,7 @@ opt.termguicolors = true
 opt.cursorline = true
 opt.relativenumber = true
 -- FEATURES
+g.mapleader = " "
 opt.mouse = ""
 opt.smartcase = true
 opt.clipboard = "unnamedplus"
