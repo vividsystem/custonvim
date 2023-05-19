@@ -13,6 +13,7 @@ function statusline()
 		["t"] = "%#StatusTerminal#",
 		["s"] = "%#StatusSelect#",
 		["S"] = "%#StatusSelect#",
+		["R"] = "%#StatusReplace#"
 	}
 
 	local mode_map = {
@@ -42,28 +43,29 @@ function statusline()
 
 	local current_time = os.date("%H:%M")
 
-	--	return string.format('%s %s %s %s %s \%=%s %s %s',
-	--		mode_color[mode], mode_name, '%#StatusLine#', file_icon, filename, current_time, file_encoding, line_col
-	--	)
 
-	return mode_color[mode]
-		.. " "
-		.. mode_name
-		.. " "
-		.. "%#StatusLine#"
-		.. " "
-		.. file_icon
-		.. " "
-		.. filename
-		.. " %="
-		.. current_time
-		.. "%= "
-		.. file_encoding
-		.. " "
-		.. mode_color[mode]
-		.. " "
-		.. line_col
-		.. " %*"
+	if vim.tbl_contains({ "NVimTree" }, vim.bo.filetype) then
+		return ""
+	else
+		return mode_color[mode]
+			.. " "
+			.. mode_name
+			.. " "
+			.. "%#StatusLine#"
+			.. " "
+			.. file_icon
+			.. " "
+			.. filename
+			.. "%="
+			.. current_time
+			.. " "
+			.. file_encoding
+			.. " "
+			.. mode_color[mode]
+			.. " "
+			.. line_col
+			.. " %*"
+	end
 end
 
 function M.setup()
@@ -76,8 +78,12 @@ function M.setup()
 			au ColorScheme * highlight StatusLineRed guifg=#000000 guibg=#FF5555
 			au ColorScheme * highlight StatusLineOrange guifg=#000000 guibg=#FFB86C
 			au ColorScheme * highlight StatusLineYellow guifg=#000000 guibg=#F1FA8C
+			au FileType NVimTree,packer lua vim.opt.statusline = ""
 		augroup END
 	]])
+
+
+
 	vim.o.statusline = '%!luaeval("statusline()")'
 end
 
