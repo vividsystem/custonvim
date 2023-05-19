@@ -20,5 +20,6 @@ opt.history = 20
 opt.shell = "/bin/zsh"
 opt.encoding = "utf-8"
 opt.splitright = true
+opt.showmode = false
 opt.showtabline = 2
 opt.swapfile = false
