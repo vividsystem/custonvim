@@ -1,5 +1,7 @@
 name: Formatting
 on: [push]
+permissions:
+  write: true
 jobs:
   stylua:
     runs-on: ubuntu-latest
