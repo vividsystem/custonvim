@@ -1,14 +1,14 @@
 local M = {}
 
 function M.setup()
-	require("nvim-navic").setup{
+	require("nvim-navic").setup({
 		lsp = {
 			auto_attach = true,
-			preference = nil
+			preference = nil,
 		},
-    highlight = true,
-    separator = " > ",
-	}
+		highlight = true,
+		separator = " > ",
+	})
 end
 
 return M

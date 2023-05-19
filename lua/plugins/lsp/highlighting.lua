@@ -2,11 +2,14 @@ local M = {}
 
 local treesitter = require("nvim-treesitter.configs")
 
-local langs = { 
-	"bash", 
+local langs = {
+	"bash",
 	"c",
-	"go", "gomod", "gosum",
-	"javascript", "jsdoc",
+	"go",
+	"gomod",
+	"gosum",
+	"javascript",
+	"jsdoc",
 	"json",
 	"lua",
 	"python",
@@ -14,7 +17,7 @@ local langs = {
 	"typescript",
 	"vim",
 	"vimdoc",
-	"query"
+	"query",
 }
 
 function M.setup()
@@ -24,8 +27,8 @@ function M.setup()
 		auto_install = true,
 
 		highlight = {
-			enable = true
-		}
+			enable = true,
+		},
 	})
 end
 return M
