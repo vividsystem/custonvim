@@ -25,6 +25,12 @@ return require("packer").startup(function(use)
 		run = function() vim.cmd [[ :TSUpdate ]] end
 	})
 
+	use({
+		"nvim-tree/nvim-tree.lua",
+		config = function ()
+			require("nvim-tree").setup()
+		end
+	})
 	-- 
 	-- VCS
 	--
