@@ -3,7 +3,7 @@ local devicons = require("nvim-web-devicons")
 
 local M = {}
 
-function tabline()
+function Tabline()
 	local current_tab = fn.tabpagenr()
 	local tab_count = fn.tabpagenr("$")
 	local tab_list = {}
@@ -50,7 +50,7 @@ function M.setup()
 			au Colorscheme * highlight TabLineFill guibg=#282A36
 		augroup END
 	]])
-	vim.o.tabline = '%!luaeval("tabline()")'
+	vim.o.tabline = '%!luaeval("Tabline()")'
 end
 
 return M
