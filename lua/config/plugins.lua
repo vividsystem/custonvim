@@ -16,6 +16,10 @@ return require("packer").startup(function(use)
 	use({"L3MON4D3/LuaSnip"})
 	use("nyoom-engineering/oxocarbon.nvim")
 
+	--
+	-- VISUALS
+	--
+
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = function() vim.cmd [[ :TSUpdate ]] end
@@ -24,9 +28,13 @@ return require("packer").startup(function(use)
 	-- 
 	-- VCS
 	--
+
 	use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
-	use { 'lewis6991/gitsigns.nvim', config = function () require("gitsigns").setup() end}
+	use {
+		'lewis6991/gitsigns.nvim',
+		config = function () require("plugins.gitsigns").setup() end
+	}
 	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
 	--
