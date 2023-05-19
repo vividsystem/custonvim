@@ -2,12 +2,13 @@ local M = {}
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
+
 function M.setup(servers)
 	cmp.setup({
 		enabled = true,
 		snippet = {
 			expand = function(args)
-				require("luasnip").lsp_expand(args.body)	
+				require("luasnip").lsp_expand(args.body)
 			end,
 		},
 		window = {
