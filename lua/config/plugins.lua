@@ -14,7 +14,7 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("nvim-tree/nvim-web-devicons")
 	use({"L3MON4D3/LuaSnip"})
-	use("nyoom-engineering/oxocarbon.nvim")
+	use("vividsystem/oxocarbon.nvim")
 
 	--
 	-- VISUALS
@@ -46,6 +46,13 @@ return require("packer").startup(function(use)
 	--
 	-- LSP
 	--
+
+	use {
+		"SmiteshP/nvim-navic",
+		config = function ()
+			require("plugins.navic").setup()
+		end
+	}
 
 	use {
 		"hrsh7th/nvim-cmp",
@@ -93,6 +100,8 @@ return require("packer").startup(function(use)
 			require("plugins.lsp").setup()
 		end,
 	})
+
+	use { "rktjmp/hotpot.nvim" }
 
 	if packer_bootstrap then
 		require("packer").sync()
