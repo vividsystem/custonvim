@@ -14,7 +14,7 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("nvim-tree/nvim-web-devicons")
 	use({"L3MON4D3/LuaSnip"})
-	use("vividsystem/oxocarbon.nvim")
+	use("nyoom-engineering/oxocarbon.nvim")
 
 	--
 	-- VISUALS
