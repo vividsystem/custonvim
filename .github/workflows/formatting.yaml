@@ -1,28 +1,25 @@
 name: Formatting
 on: [push]
-jobs: 
-  - stylua:
+jobs:
+  stylua:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@master
         with:
           ref: ${{ github.head_ref }}
-      - name: Stylua
-        id: stylua
-        - uses: JohnnyMorganz/stylua-action@v3 
-          with: 
-            token: ${{ secrets.GITHUB_TOKEN }}
-            version: latest
-            # CLI arguments 
-            args: --write .
+      - name: stylua
+        id: stylua 
+        uses: JohnnyMorganz/stylua-action@v3 
+        with:
+          args: --write .
       - name: Check for modified files
-          id: git-check
-          run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+        id: git-check
+        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
       - name: Push changes
         if: steps.git-check.outputs.modified == 'true'
         run: |
           git config --global user.name 'vividsystem'
           git config --global user.email 'vividsystem@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git commit -am "style: automatted stylua formatting"
+          git commit -am "style: auto-formatted lua code"
           git push
