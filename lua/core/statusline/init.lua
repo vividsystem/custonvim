@@ -51,7 +51,7 @@ function Statusline()
 
 	local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
 
-	if vim.tbl_contains({ "NvimTree" }, filetype) then
+	if vim.tbl_contains(disabled_filetypes, filetype) then
 		vim.opt.laststatus = 1
 		return ""
 	else
