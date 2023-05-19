@@ -17,7 +17,7 @@ function M.setup(servers)
 
 	for server, _ in ipairs(servers) do
 		lspconfig[server].setup {
-			on_attach = require("init").on_attach,
+			on_attach = require("plugins.lsp").on_attach,
 			capabilities = capabilities
 		}
 
