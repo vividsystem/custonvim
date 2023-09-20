@@ -1,28 +1,47 @@
-local M =  {}
+local M = {}
+function M.setup()
+	-- LSP handlers configuration
+	local config = {
+		float = {
+			focusable = true,
+			style = "minimal",
+			border = "rounded",
+		},
 
-function M.setup(servers)
-	local lspconfig = require("lspconfig")
-	local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+		diagnostic = {
+			-- virtual_text = false,
+			-- virtual_text = { spacing = 4, prefix = "●" },
+			virtual_text = {
+				severity = {
+					min = vim.diagnostic.severity.ERROR,
+				},
+			},
+			signs = {
+				active = nil,
+			},
+			underline = true,
+			update_in_insert = false,
+			severity_sort = true,
+			float = {
+				focusable = true,
+				style = "minimal",
+				border = "rounded",
+				source = "always",
+				header = "",
+				prefix = "",
+			},
+			-- virtual_lines = true,
+		},
+	}
 
+	-- Diagnostic configuration
+	vim.diagnostic.config(config.diagnostic)
 
---	lspconfig.lua_ls.setup {
---		capabilities = capabilities
---	}
+	-- Hover configuration
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, config.float)
 
-  for server, opts in pairs(servers) do
-    lspconfig[server].setup(vim.tbl_deep_extend("force", {
-    	on_attach = function ()
-				require('lsp_signature').on_attach({
-						bind = true,
-						hint_enable = false,
-						handler_opts = {
-							border = 'single'
-						}
-				}, bufnr)
-    	end,
-			capabilities = capabilities,
-    }, opts or {}))
-  end
+	-- Signature help configuration
+	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, config.float)
 end
 
 return M

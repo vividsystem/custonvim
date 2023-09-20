@@ -3,7 +3,11 @@ local devicons = require("nvim-web-devicons")
 
 local M = {}
 
-function statusline()
+local disabled_filetypes = {
+	"NvimTree",
+}
+
+function Statusline()
 	local mode_color = {
 		["n"] = "%#StatusNormal#",
 		["i"] = "%#StatusInsert#",
@@ -13,6 +17,7 @@ function statusline()
 		["t"] = "%#StatusTerminal#",
 		["s"] = "%#StatusSelect#",
 		["S"] = "%#StatusSelect#",
+		["R"] = "%#StatusReplace#",
 	}
 
 	local mode_map = {
@@ -26,6 +31,8 @@ function statusline()
 		["S"] = "S-LINE",
 		["R"] = "REPLACE",
 	}
+
+	local bufnr = vim.fn.winbufnr(vim.g.statusline_winid)
 
 	local mode = fn.mode()
 	local mode_name = mode_map[mode]
@@ -42,28 +49,31 @@ function statusline()
 
 	local current_time = os.date("%H:%M")
 
-	--	return string.format('%s %s %s %s %s \%=%s %s %s',
-	--		mode_color[mode], mode_name, '%#StatusLine#', file_icon, filename, current_time, file_encoding, line_col
-	--	)
+	local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
 
-	return mode_color[mode]
-		.. " "
-		.. mode_name
-		.. " "
-		.. "%#StatusLine#"
-		.. " "
-		.. file_icon
-		.. " "
-		.. filename
-		.. " %="
-		.. current_time
-		.. "%= "
-		.. file_encoding
-		.. " "
-		.. mode_color[mode]
-		.. " "
-		.. line_col
-		.. " %*"
+	if vim.tbl_contains(disabled_filetypes, filetype) then
+		vim.opt.laststatus = 1
+		return ""
+	else
+		return mode_color[mode]
+			.. " "
+			.. mode_name
+			.. " "
+			.. "%#StatusLine#"
+			.. " "
+			.. file_icon
+			.. " "
+			.. filename
+			.. "%="
+			.. current_time
+			.. " "
+			.. file_encoding
+			.. " "
+			.. mode_color[mode]
+			.. " "
+			.. line_col
+			.. " %*"
+	end
 end
 
 function M.setup()
@@ -78,7 +88,8 @@ function M.setup()
 			au ColorScheme * highlight StatusLineYellow guifg=#000000 guibg=#F1FA8C
 		augroup END
 	]])
-	vim.o.statusline = '%!luaeval("statusline()")'
+
+	vim.o.statusline = '%!luaeval("Statusline()")'
 end
 
 return M
