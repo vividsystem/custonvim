@@ -4,7 +4,7 @@ return {
 		dependencies = "nvim-tree/nvim-web-devicons",
 		opts = {
 			on_attach = "default",
-			hijack_netrw = true
-		}
-	}
+			hijack_netrw = true,
+		},
+	},
 }

@@ -4,37 +4,37 @@ return {
 		dependencies = {
 			{
 				"nvim-tree/nvim-web-devicons",
-				lazy = true
-			}
+				lazy = true,
+			},
 		},
 		opts = {
 			options = {
 				icons_enabled = true,
-				component_separators = { left = '', right = ''},
-				section_separators = { left = '', right = '' },
-    		disabled_filetypes = {
-      		statusline = {},
-      		winbar = {},
-    		},
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+				disabled_filetypes = {
+					statusline = {},
+					winbar = {},
+				},
 			},
 			sections = {
-					lualine_a = {'mode'},
-					lualine_b = {'branch', 'diff', 'diagnostics'},
-					lualine_x = {'encoding', 'fileformat', 'filetype'},
-					lualine_y = {'diagnostics'},
-					lualine_z = {'location'}
-				},
-		}
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_y = { "diagnostics" },
+				lualine_z = { "location" },
+			},
+		},
 	},
 	{
-		'akinsho/bufferline.nvim', 
-		version = "*", 
-		dependencies = 'nvim-tree/nvim-web-devicons',
+		"akinsho/bufferline.nvim",
+		version = "*",
+		dependencies = "nvim-tree/nvim-web-devicons",
 		opts = {
 			options = {
-				show_close_icon = false	
-			}
-		}
+				show_close_icon = false,
+			},
+		},
 	},
 	{
 		"utilyre/barbecue.nvim",
@@ -44,5 +44,5 @@ return {
 			"SmiteshP/nvim-navic",
 			"nvim-tree/nvim-web-devicons", -- optional dependency
 		},
-	}
+	},
 }

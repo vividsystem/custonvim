@@ -6,7 +6,7 @@ local ensure_installed = {
 	"gopls",
 	"clangd",
 	"tailwindcss",
-	"pyright"
+	"pyright",
 }
 
 local ensure_tools = {
@@ -15,16 +15,16 @@ local ensure_tools = {
 }
 return {
 	{
-    "folke/neodev.nvim",
-  },
+		"folke/neodev.nvim",
+	},
 
-  {
-    "williamboman/mason.nvim",
-		opts = {}
-    -- opts = function(_, opts)
-    --  vim.list_extend(opts.ensure_installed, ensure_installed)
-    -- end,
-  },
+	{
+		"williamboman/mason.nvim",
+		opts = {},
+		-- opts = function(_, opts)
+		--  vim.list_extend(opts.ensure_installed, ensure_installed)
+		-- end,
+	},
 	{
 		"neovim/nvim-lspconfig",
 		opts = {
@@ -35,30 +35,25 @@ return {
 				cssls = {},
 				tailwindcss = {},
 				tsserver = {
-					settings = {
-						
-					}	
+					settings = {},
 				},
 				pyright = {},
 				html = {},
 				rust_analyzer = {},
-				lua_ls = {
-					
-				}
-
-			}
-		}
+				lua_ls = {},
+			},
+		},
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		opts = {
-			ensure_installed = ensure_installed
-		}
+			ensure_installed = ensure_installed,
+		},
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		opts = {
-			ensure_installed = ensure_tools
-		}
-	}
+			ensure_installed = ensure_tools,
+		},
+	},
 }
