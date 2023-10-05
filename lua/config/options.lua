@@ -1,7 +1,8 @@
 local opt = vim.opt
 local g = vim.g
 
-vim.cmd([[ colorscheme oxocarbon ]])
+-- vim.cmd [[ colorscheme kanagawa-dragon ]]
+vim.cmd [[ colorscheme tokyonight-night ]]
 
 -- LOOKS
 opt.termguicolors = true
