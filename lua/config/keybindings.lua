@@ -1,9 +1,9 @@
 local M = {}
 
 function Map(mode, lhs, rhs, opts)
-	local options = { noremap = true, silent = true}
+	local options = { noremap = true, silent = true }
 	if opts then
-		options	= vim.tbl_extend("force", options, opts)
+		options = vim.tbl_extend("force", options, opts)
 	end
 	vim.keymap.set(mode, lhs, rhs, options)
 end
@@ -60,27 +60,29 @@ Map("n", "<S-TAB>", ":bp<CR>")
 
 Map("n", "<ESC>", "<cmd>noh<CR>")
 Map("t", "<ESC>", "<C-\\><C-n>")
-Map("n", "K", function() vim.lsp.buf.hover() end)
+Map("n", "K", function()
+	vim.lsp.buf.hover()
+end)
 
 function M.wk_bindings()
 	return {
-		t = { "<cmd>ToggleTerm<cr>", "Termial"},
+		t = { "<cmd>ToggleTerm<cr>", "Termial" },
 		f = {
 			name = "file",
-			f = {"<cmd>Telescope find_files<cr>", "Find file" },
-			x = {"<cmd>NvimTreeToggle<cr>", "File Explorer"}
+			f = { "<cmd>Telescope find_files<cr>", "Find file" },
+			x = { "<cmd>NvimTreeToggle<cr>", "File Explorer" },
 		},
 		v = {
 			name = "vcs",
-			o = {"<cmd>Neogit<cr>", "Open"},
-			d = {"<cmd>DiffviewToggle", "Diffs"}
+			o = { "<cmd>Neogit<cr>", "Open" },
+			d = { "<cmd>DiffviewToggle", "Diffs" },
 		},
 		g = {
 			name = "goto",
-			f = {"<cmd>Telescope find_files<cr>", "File"},
-			d = {vim.lsp.buf.definition(), "Definition"},
-			i = {vim.lsp.buf.implementation(), "Implementation"},
-		}
+			f = { "<cmd>Telescope find_files<cr>", "File" },
+			d = { vim.lsp.buf.definition(), "Definition" },
+			i = { vim.lsp.buf.implementation(), "Implementation" },
+		},
 	}
 end
 

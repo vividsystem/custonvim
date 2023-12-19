@@ -1,6 +1,6 @@
 return {
 	{
-		"sbdchd/neoformat"
+		"sbdchd/neoformat",
 	},
 	{
 		"gennaro-tedesco/nvim-jqx",

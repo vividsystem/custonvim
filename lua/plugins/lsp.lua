@@ -14,10 +14,10 @@ local ensure_tools = {
 	"shellcheck",
 }
 return {
-  {
-    "williamboman/mason.nvim",
+	{
+		"williamboman/mason.nvim",
 		opts = {},
-  },
+	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
@@ -26,10 +26,10 @@ return {
 				settings = {
 					Lua = {
 						completion = {
-							callSnippet = "Replace"
-						}
-					}
-				}
+							callSnippet = "Replace",
+						},
+					},
+				},
 			})
 			lspconfig.clangd.setup({})
 			lspconfig.tsserver.setup({})
@@ -46,12 +46,12 @@ return {
 						enabled = true,
 						runtime = true,
 						types = true,
-						plugins = true
+						plugins = true,
 					},
 					lspconfig = true,
-				}
+				},
 			},
-		}
+		},
 	},
 	{
 		"folke/neodev.nvim",
@@ -89,16 +89,18 @@ return {
 			"ray-x/guihua.lua",
 		},
 		opts = {
-			go = 'go',
-			goimport = 'gopls',
-			fillstruct = 'gopls',
-			gofmt = 'gofumpt',
+			go = "go",
+			goimport = "gopls",
+			fillstruct = "gopls",
+			gofmt = "gofumpt",
 			lsp_cfg = {
-				capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+				capabilities = require("cmp_nvim_lsp").default_capabilities(
+					vim.lsp.protocol.make_client_capabilities()
+				),
 			},
-			lsp_keymaps = false
+			lsp_keymaps = false,
 		},
-		ft = {"go", "gomod"},
+		ft = { "go", "gomod" },
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",

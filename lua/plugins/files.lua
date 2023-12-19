@@ -1,6 +1,6 @@
 return {
 	{
-		"mbbill/undotree"
+		"mbbill/undotree",
 	},
 	{
 		"nvim-tree/nvim-tree.lua",

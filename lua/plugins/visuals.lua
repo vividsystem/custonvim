@@ -18,23 +18,23 @@ return {
 				},
 			},
 			sections = {
-					lualine_a = {'mode'},
-					lualine_b = {'branch', 'diff'},
-					lualine_x = {'encoding', 'fileformat', 'filetype'},
-					lualine_y = {'diagnostics'},
-					lualine_z = {'location'}
-				},
-		}
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diff" },
+				lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_y = { "diagnostics" },
+				lualine_z = { "location" },
+			},
+		},
 	},
 	{
-		'akinsho/bufferline.nvim',
+		"akinsho/bufferline.nvim",
 		version = "*",
-		dependencies = 'nvim-tree/nvim-web-devicons',
+		dependencies = "nvim-tree/nvim-web-devicons",
 		opts = {
 			options = {
-				show_close_icon = false
-			}
-		}
+				show_close_icon = false,
+			},
+		},
 	},
 	{
 		"utilyre/barbecue.nvim",
@@ -47,14 +47,14 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		config = function ()
+		config = function()
 			local configs = require("nvim-treesitter.configs")
 			configs.setup({
 				auto_install = true,
 				highlight = {
-					enable = true
-				}
+					enable = true,
+				},
 			})
-		end
-	}
+		end,
+	},
 }

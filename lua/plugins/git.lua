@@ -7,7 +7,7 @@ return {
 			"nvim-telescope/telescope.nvim",
 			{
 				"sindrets/diffview.nvim",
-				config = function (opts)
+				config = function(opts)
 					vim.api.nvim_create_user_command("DiffviewToggle", function(e)
 						local view = require("diffview.lib").get_current_view()
 
@@ -16,25 +16,25 @@ return {
 						else
 							vim.cmd("DiffviewOpen " .. e.args)
 						end
-					end, { nargs = "*"})
+					end, { nargs = "*" })
 					return require("diffview").setup(opts)
-				end
+				end,
 			},
-		}
+		},
 	},
 	{
 		"f-person/git-blame.nvim",
 		opts = {
 			enabled = true,
-			message_template = '<summary> • <date> • <author>',
+			message_template = "<summary> • <date> • <author>",
 			message_when_not_committed = "pls commit dumbass",
-			highlight_group = "GitBlameVirtualText"
+			highlight_group = "GitBlameVirtualText",
 		},
 	},
 	{
 		"lewis6991/gitsigns.nvim",
 		opts = {
-			signcolumn = true
-		}
-	}
+			signcolumn = true,
+		},
+	},
 }
