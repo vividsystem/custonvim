@@ -1,9 +1,6 @@
 local opt = vim.opt
 local g = vim.g
 
--- vim.cmd [[ colorscheme kanagawa-dragon ]]
-vim.cmd [[ colorscheme tokyonight-night ]]
-
 -- LOOKS
 opt.termguicolors = true
 opt.cursorline = true
@@ -24,3 +21,6 @@ opt.splitright = true
 opt.showmode = false
 opt.showtabline = 2
 opt.swapfile = false
+opt.undofile = true
+opt.undodir = vim.fn.expand("~/.cache/nvim/undodir")
+opt.updatetime = 500

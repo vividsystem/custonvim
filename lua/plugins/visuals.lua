@@ -19,7 +19,7 @@ return {
 			},
 			sections = {
 					lualine_a = {'mode'},
-					lualine_b = {'branch', 'diff', 'diagnostics'},
+					lualine_b = {'branch', 'diff'},
 					lualine_x = {'encoding', 'fileformat', 'filetype'},
 					lualine_y = {'diagnostics'},
 					lualine_z = {'location'}
@@ -27,12 +27,12 @@ return {
 		}
 	},
 	{
-		'akinsho/bufferline.nvim', 
-		version = "*", 
+		'akinsho/bufferline.nvim',
+		version = "*",
 		dependencies = 'nvim-tree/nvim-web-devicons',
 		opts = {
 			options = {
-				show_close_icon = false	
+				show_close_icon = false
 			}
 		}
 	},
@@ -44,5 +44,17 @@ return {
 			"SmiteshP/nvim-navic",
 			"nvim-tree/nvim-web-devicons", -- optional dependency
 		},
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		config = function ()
+			local configs = require("nvim-treesitter.configs")
+			configs.setup({
+				auto_install = true,
+				highlight = {
+					enable = true
+				}
+			})
+		end
 	}
 }
