@@ -1,13 +1,12 @@
-local servers = {
-	html = {},
-	tsserver = {},
-	bashls = {},
-	rust_analyzer = {},
-	gopls = {},
-	clangd = {},
-	tailwindcss = {},
-	pyright = {},
-	lua_ls = {}
+local ensure_installed = {
+	"html",
+	"tsserver",
+	"bashls",
+	"rust_analyzer",
+	"gopls",
+	"clangd",
+	"tailwindcss",
+	"pyright",
 }
 
 local ensure_tools = {
@@ -55,6 +54,36 @@ return {
 		}
 	},
 	{
+		"folke/neodev.nvim",
+	},
+
+	{
+		"williamboman/mason.nvim",
+		opts = {},
+		-- opts = function(_, opts)
+		--  vim.list_extend(opts.ensure_installed, ensure_installed)
+		-- end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		opts = {
+			inlay_hints = { enabled = true },
+			servers = {
+				bashls = {},
+				clangd = {},
+				cssls = {},
+				tailwindcss = {},
+				tsserver = {
+					settings = {},
+				},
+				pyright = {},
+				html = {},
+				rust_analyzer = {},
+				lua_ls = {},
+			},
+		},
+	},
+	{
 		"ray-x/go.nvim",
 		dependencies = {
 			"ray-x/guihua.lua",
@@ -74,13 +103,13 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		opts = {
-			ensure_installed = servers 
-		}
+			ensure_installed = ensure_installed,
+		},
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		opts = {
-			ensure_installed = ensure_tools
-		}
+			ensure_installed = ensure_tools,
+		},
 	},
 }

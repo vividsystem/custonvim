@@ -4,18 +4,18 @@ return {
 		dependencies = {
 			{
 				"nvim-tree/nvim-web-devicons",
-				lazy = true
-			}
+				lazy = true,
+			},
 		},
 		opts = {
 			options = {
 				icons_enabled = true,
-				component_separators = { left = '', right = ''},
-				section_separators = { left = '', right = '' },
-    		disabled_filetypes = {
-      		statusline = {},
-      		winbar = {},
-    		},
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+				disabled_filetypes = {
+					statusline = {},
+					winbar = {},
+				},
 			},
 			sections = {
 					lualine_a = {'mode'},
