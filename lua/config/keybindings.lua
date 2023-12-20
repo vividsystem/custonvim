@@ -38,15 +38,10 @@ Map("t", "<C-k>", "<cmd>wincmd k<CR>")
 Map("t", "<C-l>", "<cmd>wincmd l<CR>")
 
 -- Sizing
-Map("n", "<C-Up>", ":resize -2<CR>")
-Map("n", "<C-Down>", ":resize +2<CR>")
-Map("n", "<C-Left>", ":vertical resize -2<CR>")
-Map("n", "<C-Right>", ":vertical resize +2<CR>")
-
-Map("t", "<C-Up>", ":resize -2<CR>")
-Map("t", "<C-Down>", ":resize +2<CR>")
-Map("t", "<C-Left>", ":vertical resize -2<CR>")
-Map("t", "<C-Right>", ":vertical resize +2<CR>")
+Map({"n", "t"}, "<C-Up>", ":resize -2<CR>")
+Map({"n", "t"}, "<C-Down>", ":resize +2<CR>")
+Map({"n", "t"}, "<C-Left>", ":vertical resize -2<CR>")
+Map({"n", "t"}, "<C-Right>", ":vertical resize +2<CR>")
 
 -- terminal
 Map("t", "<C-Up>", "<cmd>resize -2<CR>")
@@ -65,9 +60,11 @@ Map("n", "K", function()
 end)
 
 local ls = require("luasnip")
-Map("i", "<C-n>", function ()
-	ls.jump(1)
-end)
+Map({"i", "s"}, "<C-n>", function() ls.jump( 1) end, { desc = "jump to next snippet" })
+Map({"i", "s"}, "<C-p>", function() ls.jump(-1) end, { desc = "jump to previous snippet" })
+Map({"i", "s"}, "<S-Right>", function() ls.jump( 1) end, { desc = "jump to next snippet" })
+Map({"i", "s"}, "<S-Left>", function() ls.jump(-1) end, { desc = "jump to previous snippet" })
+
 function M.wk_bindings()
 	return {
 		t = { "<cmd>ToggleTerm<cr>", "Termial" },
