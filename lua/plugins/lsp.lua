@@ -19,7 +19,8 @@ return {
 		opts = {},
 	},
 	{
-		"folke/neodev.nvim"
+		"folke/neodev.nvim",
+		opts = {},
 	},
 	{
 		"neovim/nvim-lspconfig",
