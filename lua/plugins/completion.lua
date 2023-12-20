@@ -44,7 +44,6 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = false }),
 				}),
 			})
-			cmp.setup.cmdline()
 		end,
 	},
 }
