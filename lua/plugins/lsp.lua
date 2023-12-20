@@ -19,6 +19,9 @@ return {
 		opts = {},
 	},
 	{
+		"folke/neodev.nvim"
+	},
+	{
 		"neovim/nvim-lspconfig",
 		config = function()
 			local lspconfig = require("lspconfig")
@@ -53,10 +56,6 @@ return {
 			},
 		},
 	},
-	{
-		"folke/neodev.nvim",
-	},
-
 	{
 		"williamboman/mason.nvim",
 		opts = {},
