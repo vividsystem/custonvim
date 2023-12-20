@@ -60,4 +60,12 @@ return {
 			require("illuminate").configure(opts)
 		end,
 	},
+	{
+		"ggandor/leap.nvim",
+		opts = {},
+		config = function(opts) 
+			require("leap").set_default_keymaps() 
+			require("leap").setup(opts)
+		end
+	}
 }
