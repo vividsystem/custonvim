@@ -64,6 +64,10 @@ Map("n", "K", function()
 	vim.lsp.buf.hover()
 end)
 
+local ls = require("luasnip")
+Map("i", "<C-n>", function ()
+	ls.jump(1)
+end)
 function M.wk_bindings()
 	return {
 		t = { "<cmd>ToggleTerm<cr>", "Termial" },
@@ -83,6 +87,23 @@ function M.wk_bindings()
 			d = { vim.lsp.buf.definition(), "Definition" },
 			i = { vim.lsp.buf.implementation(), "Implementation" },
 		},
+		l = {
+			name = "lsp",
+			r = {
+				function ()
+					local _, guihua = pcall("guihua.lua", "guihua.floating")
+  				local input = vim.ui.input
+
+  				if guihua then
+    				vim.ui.input = require('guihua.input').input
+  				end
+  				vim.lsp.buf.rename()
+  				return vim.defer_fn(function()
+    				vim.ui.input = input
+  				end, 1000)
+				end, "Rename"
+			}
+		}
 	}
 end
 
