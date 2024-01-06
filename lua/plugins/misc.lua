@@ -63,9 +63,9 @@ return {
 	{
 		"ggandor/leap.nvim",
 		opts = {},
-		config = function(opts) 
-			require("leap").set_default_keymaps() 
+		config = function(opts)
+			require("leap").set_default_keymaps()
 			require("leap").setup(opts)
-		end
-	}
+		end,
+	},
 }
