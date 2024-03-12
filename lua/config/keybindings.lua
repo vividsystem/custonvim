@@ -81,8 +81,9 @@ function M.wk_bindings()
 		g = {
 			name = "goto",
 			f = { "<cmd>Telescope find_files<cr>", "File" },
-			d = { vim.lsp.buf.definition(), "Definition" },
-			i = { vim.lsp.buf.implementation(), "Implementation" },
+			d = { vim.lsp.buf.definition, "Definition" },
+			D = { vim.lsp.buf.declaration, "Declaration" },
+			i = { vim.lsp.buf.implementation, "Implementation" },
 		},
 		l = {
 			name = "lsp",
@@ -100,6 +101,12 @@ function M.wk_bindings()
   				end, 1000)
 				end, "Rename"
 			}
+		},
+		d = {
+			name = "dap",
+			b = {require('dap').toggle_breakpoint, "toggle breakpoint"},
+			c = {require('dap').continue, "continue/start debugging"},
+			r = {require('dap').repl.toggle, "toggle repl"}
 		}
 	}
 end
