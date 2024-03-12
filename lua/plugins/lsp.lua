@@ -40,6 +40,8 @@ return {
 			lspconfig.rust_analyzer.setup({})
 			lspconfig.pyright.setup({})
 			lspconfig.gopls.setup({})
+			lspconfig.html.setup({})
+			lspconfig.tailwindcss.setup({})
 		end,
 		dependencies = {
 			"nvimdev/lspsaga.nvim",
