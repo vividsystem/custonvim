@@ -8,6 +8,10 @@ return {
 		opts = {
 			on_attach = "default",
 			hijack_netrw = true,
+			filters = {
+				dotfiles = false,
+				git_ignored = false
+			}
 		},
 	},
 }
