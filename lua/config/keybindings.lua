@@ -59,12 +59,12 @@ Map("n", "K", function()
 	vim.lsp.buf.hover()
 end)
 
-Map("n", "<leader>t","<cmd>ToggleTerm<cr>", { desc = "Terminal"})
+Map("n", "<leader>t", "<cmd>ToggleTerm<cr>", { desc = "Terminal" })
 
-local telescope_builtin = require('telescope.builtin')
-Map("n", "<leader>ff", telescope_builtin.find_files, { desc = "File"})
-Map("n", "<leader>fg", telescope_builtin.live_grep, { desc = "Text search"})
-Map("n", "<leader>fx", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer"})
+local telescope_builtin = require("telescope.builtin")
+Map("n", "<leader>ff", telescope_builtin.find_files, { desc = "File" })
+Map("n", "<leader>fg", telescope_builtin.live_grep, { desc = "Text search" })
+Map("n", "<leader>fx", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer" })
 
 function M.wk_bindings()
 	return {

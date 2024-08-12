@@ -10,22 +10,22 @@ M.servers = {
 				gofumpt = true,
 				codelenses = {
 					generate = true, -- show the `go generate` lens.
-          gc_details = true, -- Show a code lens toggling the display of gc's choices.
-          test = true,
-          tidy = true,
-          vendor = true,
-          regenerate_cgo = true,
-          upgrade_dependency = true,
+					gc_details = true, -- Show a code lens toggling the display of gc's choices.
+					test = true,
+					tidy = true,
+					vendor = true,
+					regenerate_cgo = true,
+					upgrade_dependency = true,
 				},
 				usePlaceholders = true,
 				staticcheck = true,
 				hints = {
 					compositeLiteralFields = true,
 					parameterNames = true,
-					rangeVariableTypes = true
-				}
-			}
-		}
+					rangeVariableTypes = true,
+				},
+			},
+		},
 	},
 	clangd = {},
 	tailwindcss = {},
@@ -38,13 +38,12 @@ M.servers = {
 				},
 			},
 		},
-	}
+	},
 }
 M.tools = {
 	"stylua",
 	"shellcheck",
 }
-
 
 function M.on_attach(client, bufnr)
 	if client.server_capabilities.inlayHintProvider then
@@ -54,9 +53,8 @@ end
 
 function M.setupServers()
 	local lspconfig = require("lspconfig")
-	local default_capabilities = require("cmp_nvim_lsp").default_capabilities(
-		vim.lsp.protocol.make_client_capabilities()
-	)
+	local default_capabilities =
+		require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 	for server, settings in pairs(M.servers) do
 		settings.capabilities = settings.capabilities or default_capabilities
 		settings.on_attach = settings.on_attach or M.on_attach
@@ -90,7 +88,7 @@ return {
 						plugins = true,
 					},
 					lspconfig = true,
-					inlay_hints = { enabled = true }
+					inlay_hints = { enabled = true },
 				},
 			},
 		},

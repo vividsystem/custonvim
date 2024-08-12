@@ -18,7 +18,7 @@ function M.servers()
 					},
 				},
 			},
-		}
+		},
 	}
 end
 
@@ -39,7 +39,5 @@ function M.bind_servers()
 	end
 end
 
-function M.setup()
-
-end
+function M.setup() end
 return M
