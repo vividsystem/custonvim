@@ -1,18 +1,69 @@
-local ensure_installed = {
-	"html",
-	"tsserver",
-	"bashls",
-	"rust_analyzer",
-	"gopls",
-	"clangd",
-	"tailwindcss",
-	"pyright",
+local M = {}
+M.servers = {
+	tsserver = {},
+	html = {},
+	bashls = {},
+	rust_analyzer = {},
+	gopls = {
+		settings = {
+			gopls = {
+				gofumpt = true,
+				codelenses = {
+					generate = true, -- show the `go generate` lens.
+          gc_details = true, -- Show a code lens toggling the display of gc's choices.
+          test = true,
+          tidy = true,
+          vendor = true,
+          regenerate_cgo = true,
+          upgrade_dependency = true,
+				},
+				usePlaceholders = true,
+				staticcheck = true,
+				hints = {
+					compositeLiteralFields = true,
+					parameterNames = true,
+					rangeVariableTypes = true
+				}
+			}
+		}
+	},
+	clangd = {},
+	tailwindcss = {},
+	pyright = {},
+	lua_ls = {
+		settings = {
+			Lua = {
+				completion = {
+					callSnippet = "Replace",
+				},
+			},
+		},
+	}
 }
-
-local ensure_tools = {
+M.tools = {
 	"stylua",
 	"shellcheck",
 }
+
+
+function M.on_attach(client, bufnr)
+	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.inlay_hint.enable(true)
+	end
+end
+
+function M.setupServers()
+	local lspconfig = require("lspconfig")
+	local default_capabilities = require("cmp_nvim_lsp").default_capabilities(
+		vim.lsp.protocol.make_client_capabilities()
+	)
+	for server, settings in pairs(M.servers) do
+		settings.capabilities = settings.capabilities or default_capabilities
+		settings.on_attach = settings.on_attach or M.on_attach
+		lspconfig[server].setup(settings)
+	end
+end
+
 return {
 	{
 		"williamboman/mason.nvim",
@@ -25,23 +76,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
-				settings = {
-					Lua = {
-						completion = {
-							callSnippet = "Replace",
-						},
-					},
-				},
-			})
-			lspconfig.clangd.setup({})
-			lspconfig.tsserver.setup({})
-			lspconfig.rust_analyzer.setup({})
-			lspconfig.pyright.setup({})
-			lspconfig.gopls.setup({})
-			lspconfig.html.setup({})
-			lspconfig.tailwindcss.setup({})
+			M:setupServers()
 		end,
 		dependencies = {
 			"nvimdev/lspsaga.nvim",
@@ -55,6 +90,7 @@ return {
 						plugins = true,
 					},
 					lspconfig = true,
+					inlay_hints = { enabled = true }
 				},
 			},
 		},
@@ -70,50 +106,19 @@ return {
 		"neovim/nvim-lspconfig",
 		opts = {
 			inlay_hints = { enabled = true },
-			servers = {
-				bashls = {},
-				clangd = {},
-				cssls = {},
-				tailwindcss = {},
-				tsserver = {
-					settings = {},
-				},
-				pyright = {},
-				html = {},
-				rust_analyzer = {},
-				lua_ls = {},
-			},
+			servers = M.servers,
 		},
-	},
-	{
-		"ray-x/go.nvim",
-		dependencies = {
-			"ray-x/guihua.lua",
-		},
-		opts = {
-			go = "go",
-			goimport = "gopls",
-			fillstruct = "gopls",
-			gofmt = "gofumpt",
-			lsp_cfg = {
-				capabilities = require("cmp_nvim_lsp").default_capabilities(
-					vim.lsp.protocol.make_client_capabilities()
-				),
-			},
-			lsp_keymaps = false,
-		},
-		ft = { "go", "gomod" },
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		opts = {
-			ensure_installed = ensure_installed,
+			ensure_installed = M.servers,
 		},
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		opts = {
-			ensure_installed = ensure_tools,
+			ensure_installed = M.tools,
 		},
 	},
 }

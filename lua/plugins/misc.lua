@@ -8,11 +8,6 @@ return {
 		},
 	},
 	{
-		"windwp/nvim-autopairs",
-		opts = {},
-		event = "InsertEnter",
-	},
-	{
 		"uga-rosa/ccc.nvim",
 		opts = {},
 	},

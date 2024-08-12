@@ -59,27 +59,17 @@ Map("n", "K", function()
 	vim.lsp.buf.hover()
 end)
 
-local ls = require("luasnip")
-Map({ "i", "s" }, "<C-n>", function()
-	ls.jump(1)
-end, { desc = "jump to next snippet" })
-Map({ "i", "s" }, "<C-p>", function()
-	ls.jump(-1)
-end, { desc = "jump to previous snippet" })
-Map({ "i", "s" }, "<S-Right>", function()
-	ls.jump(1)
-end, { desc = "jump to next snippet" })
-Map({ "i", "s" }, "<S-Left>", function()
-	ls.jump(-1)
-end, { desc = "jump to previous snippet" })
+Map("n", "<leader>t","<cmd>ToggleTerm<cr>", { desc = "Terminal"})
+
+local telescope_builtin = require('telescope.builtin')
+Map("n", "<leader>ff", telescope_builtin.find_files, { desc = "File"})
+Map("n", "<leader>fg", telescope_builtin.live_grep, { desc = "Text search"})
+Map("n", "<leader>fx", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer"})
 
 function M.wk_bindings()
 	return {
-		t = { "<cmd>ToggleTerm<cr>", "Termial" },
 		f = {
 			name = "file",
-			f = { "<cmd>Telescope find_files<cr>", "Find file" },
-			x = { "<cmd>NvimTreeToggle<cr>", "File Explorer" },
 		},
 		v = {
 			name = "vcs",

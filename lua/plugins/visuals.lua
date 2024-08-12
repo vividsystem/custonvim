@@ -50,6 +50,10 @@ return {
 		config = function()
 			local configs = require("nvim-treesitter.configs")
 			configs.setup({
+				modules = {},
+				ensure_installed = {"c", "lua", "bash", "html", "typescript", "go", "gomod"},
+				sync_install = false,
+				ignore_install = {},
 				auto_install = true,
 				highlight = {
 					enable = true,
