@@ -90,22 +90,23 @@ function M.wk_bindings()
 					local _, guihua = pcall("guihua.lua", "guihua.floating")
 					local input = vim.ui.input
 
-  				if guihua then
-    				vim.ui.input = require('guihua.input').input
-  				end
-  				vim.lsp.buf.rename()
-  				return vim.defer_fn(function()
-    				vim.ui.input = input
-  				end, 1000)
-				end, "Rename"
-			}
+					if guihua then
+						vim.ui.input = require("guihua.input").input
+					end
+					vim.lsp.buf.rename()
+					return vim.defer_fn(function()
+						vim.ui.input = input
+					end, 1000)
+				end,
+				"Rename",
+			},
 		},
 		d = {
 			name = "dap",
-			b = {require('dap').toggle_breakpoint, "toggle breakpoint"},
-			c = {require('dap').continue, "continue/start debugging"},
-			r = {require('dap').repl.toggle, "toggle repl"}
-		}
+			b = { require("dap").toggle_breakpoint, "toggle breakpoint" },
+			c = { require("dap").continue, "continue/start debugging" },
+			r = { require("dap").repl.toggle, "toggle repl" },
+		},
 	}
 end
 
