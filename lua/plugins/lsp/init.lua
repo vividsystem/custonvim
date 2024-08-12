@@ -9,6 +9,7 @@ local servers = {
 	["bashls"] = {},
 	["rust_analyzer"] = {},
 	["gopls"] = {},
+	["jdtls"] = {},
 }
 
 function M.on_attach(client, bufnr)
