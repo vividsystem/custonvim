@@ -12,6 +12,9 @@ return {
 				dotfiles = false,
 				git_ignored = false,
 			},
+			view = {
+				side = "right"
+			}
 		},
 	},
 }
