@@ -1,6 +1,6 @@
 local M = {}
 M.servers = {
-	tsserver = {},
+	ts_ls = {},
 	html = {},
 	bashls = {},
 	rust_analyzer = {},
@@ -39,6 +39,7 @@ M.servers = {
 			},
 		},
 	},
+	texlab = {},
 }
 M.tools = {
 	"stylua",
