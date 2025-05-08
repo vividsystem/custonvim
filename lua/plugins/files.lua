@@ -13,8 +13,8 @@ return {
 				git_ignored = false,
 			},
 			view = {
-				side = "right"
-			}
+				side = "right",
+			},
 		},
 	},
 }

@@ -51,9 +51,9 @@ return {
 			local configs = require("nvim-treesitter.configs")
 			configs.setup({
 				modules = {},
-				ensure_installed = { "c", "lua", "bash", "html", "typescript", "go", "gomod"},
+				ensure_installed = { "c", "lua", "bash", "html", "typescript", "go", "gomod" },
 				sync_install = false,
-				ignore_install = {"latex"},
+				ignore_install = { "latex" },
 				auto_install = true,
 				highlight = {
 					enable = true,
@@ -62,6 +62,6 @@ return {
 		end,
 	},
 	{
-		'ray-x/guihua.lua',
-	}
+		"ray-x/guihua.lua",
+	},
 }

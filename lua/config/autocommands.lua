@@ -4,6 +4,9 @@ vim.api.nvim_create_autocmd("CursorHold", {
 	end,
 })
 
-vim.api.nvim_create_autocmd({"FileType"}, {pattern = {"*.tex"}, callback = function ()
-	vim.cmd("VimtexCompile")
-end})
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "*.tex" },
+	callback = function()
+		vim.cmd("VimtexCompile")
+	end,
+})
