@@ -66,48 +66,34 @@ Map("n", "<leader>ff", telescope_builtin.find_files, { desc = "File" })
 Map("n", "<leader>fg", telescope_builtin.live_grep, { desc = "Text search" })
 Map("n", "<leader>fx", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer" })
 
+Map("n", "<leader>db", require("dap").toggle_breakpoint, {desc = "toggle breakpoint" })
+Map("n", "<leader>dc", require("dap").continue, { desc = "continue/start debugging" })
+Map("n", "<leader>dr", require("dap").repl.toggle, { desc = "toggle repl" })
+Map("n", "<leader>gD", vim.lsp.buf.declaration, { desc = "Declaration" })
+Map("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Definition" })
+Map("n", "<leader>gi", vim.lsp.buf.implementation, { desc = "Implementation" })
+Map("n", "<leader>lr", function()
+	local _, guihua = pcall("guihua.lua", "guihua.floating")
+	local input = vim.ui.input
+
+	if guihua then
+		vim.ui.input = require("guihua.input").input
+	end
+	vim.lsp.buf.rename()
+	return vim.defer_fn(function()
+		vim.ui.input = input
+	end, 1000)
+end, { desc = "Rename" })
+Map("n", "<leader>vd", "<cmd>DiffviewToggle", { desc = "Diffs" })
+Map("n", "<leader>vo", "<cmd>Neogit<cr>", { desc = "Open" })
+
 function M.wk_bindings()
 	return {
-		f = {
-			name = "file",
-		},
-		v = {
-			name = "vcs",
-			o = { "<cmd>Neogit<cr>", "Open" },
-			d = { "<cmd>DiffviewToggle", "Diffs" },
-		},
-		g = {
-			name = "goto",
-			f = { "<cmd>Telescope find_files<cr>", "File" },
-			d = { vim.lsp.buf.definition, "Definition" },
-			D = { vim.lsp.buf.declaration, "Declaration" },
-			i = { vim.lsp.buf.implementation, "Implementation" },
-		},
-		l = {
-			name = "lsp",
-			r = {
-				function()
-					local _, guihua = pcall("guihua.lua", "guihua.floating")
-					local input = vim.ui.input
-
-					if guihua then
-						vim.ui.input = require("guihua.input").input
-					end
-					vim.lsp.buf.rename()
-					return vim.defer_fn(function()
-						vim.ui.input = input
-					end, 1000)
-				end,
-				"Rename",
-			},
-		},
-		d = {
-			name = "dap",
-			b = { require("dap").toggle_breakpoint, "toggle breakpoint" },
-			c = { require("dap").continue, "continue/start debugging" },
-			r = { require("dap").repl.toggle, "toggle repl" },
-		},
+		{ "<leader>f", group = "file"},
+		{ "<leader>v", group = "vcs"},
+		{ "<leader>d", group = "debug"},
+		{ "<leader>g", group = "goto"},
+		{ "<leader>l", group = "lsp"},
 	}
 end
-
 return M

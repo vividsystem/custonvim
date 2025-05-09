@@ -1,43 +1,56 @@
 local M = {}
 
-function M.servers()
-	return {
-		tsserver = {},
-		html = {},
-		bashls = {},
-		rust_analyzer = {},
-		gopls = {},
-		clangd = {},
-		tailwindcss = {},
-		pyright = {},
-		lua_ls = {
-			settings = {
-				Lua = {
-					completion = {
-						callSnippet = "Replace",
-					},
+-- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+-- for all available options
+M.servers = {
+	["ts_ls"] = {},
+	["html"] = {},
+	["bashls"] = {},
+	["rust_analyzer"] = {},
+	gopls = {
+		settings = {
+			gopls = {
+				gofumpt = true,
+				codelenses = {
+					generate = true, -- show the `go generate` lens.
+					gc_details = true, -- Show a code lens toggling the display of gc's choices.
+					test = true,
+					tidy = true,
+					vendor = true,
+					regenerate_cgo = true,
+					upgrade_dependency = true,
+				},
+				usePlaceholders = true,
+				staticcheck = true,
+				hints = {
+					compositeLiteralFields = true,
+					parameterNames = true,
+					rangeVariableTypes = true,
 				},
 			},
 		},
-	}
-end
+	},
+	clangd = {},
+	["tailwindcss"] = {},
+	pyright = {},
+	["lua_ls"] = {
+		settings = {
+			Lua = {
+				completion = {
+					callSnippet = "Replace",
+				},
+			},
+		},
+	},
+	texlab = {},
+}
 
-function M.capabilities()
-	local capabilities = require("cmp_nvim_lsp").default_capabilities()
+M.tools = {
+	"stylua",
+	"shellcheck",
+}
 
-	return capabilities
-end
+M.ensure_installed = require("util.tbl").get_keys(M.servers)
+table.insert(M.ensure_installed, tools)
 
-function M.bind_servers()
-	local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-	if not lspconfig_status then
-		return
-	end
-	for server, settings in pairs(lspconfig) do
-		settings.capabilities = settings.capabilities or M:capabilities()
-		lspconfig[server].setup(settings)
-	end
-end
-
-function M.setup() end
 return M

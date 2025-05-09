@@ -8,6 +8,6 @@ return {
 	config = function()
 		local wk = require("which-key")
 		local mappings = require("config.keybindings").wk_bindings()
-		wk.register(mappings, { prefix = "<leader>" })
+		wk.add(mappings, { mode = "n" })
 	end,
 }

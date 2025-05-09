@@ -1,50 +1,6 @@
 local M = {}
-M.servers = {
-	ts_ls = {},
-	html = {},
-	bashls = {},
-	rust_analyzer = {},
-	gopls = {
-		settings = {
-			gopls = {
-				gofumpt = true,
-				codelenses = {
-					generate = true, -- show the `go generate` lens.
-					gc_details = true, -- Show a code lens toggling the display of gc's choices.
-					test = true,
-					tidy = true,
-					vendor = true,
-					regenerate_cgo = true,
-					upgrade_dependency = true,
-				},
-				usePlaceholders = true,
-				staticcheck = true,
-				hints = {
-					compositeLiteralFields = true,
-					parameterNames = true,
-					rangeVariableTypes = true,
-				},
-			},
-		},
-	},
-	clangd = {},
-	tailwindcss = {},
-	pyright = {},
-	lua_ls = {
-		settings = {
-			Lua = {
-				completion = {
-					callSnippet = "Replace",
-				},
-			},
-		},
-	},
-	texlab = {},
-}
-M.tools = {
-	"stylua",
-	"shellcheck",
-}
+
+local config = require("config.langs")
 
 function M.on_attach(client, bufnr)
 	if client.server_capabilities.inlayHintProvider then
@@ -52,22 +8,25 @@ function M.on_attach(client, bufnr)
 	end
 end
 
+function M.capabilities()
+	local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+	return capabilities
+end
+
 function M.setupServers()
 	local lspconfig = require("lspconfig")
 	local default_capabilities =
 		require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-	for server, settings in pairs(M.servers) do
+	for server, settings in pairs(config.servers) do
 		settings.capabilities = settings.capabilities or default_capabilities
 		settings.on_attach = settings.on_attach or M.on_attach
 		lspconfig[server].setup(settings)
 	end
 end
 
+
 return {
-	{
-		"williamboman/mason.nvim",
-		opts = {},
-	},
 	{
 		"folke/neodev.nvim",
 		opts = {},
@@ -95,29 +54,15 @@ return {
 		},
 	},
 	{
-		"williamboman/mason.nvim",
-		opts = {},
-		-- opts = function(_, opts)
-		--  vim.list_extend(opts.ensure_installed, ensure_installed)
-		-- end,
-	},
-	{
-		"neovim/nvim-lspconfig",
+		"mason-org/mason-lspconfig.nvim",
 		opts = {
-			inlay_hints = { enabled = true },
-			servers = M.servers,
+			ensure_installed = config.ensure_installed
 		},
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			ensure_installed = M.servers,
-		},
-	},
-	{
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		opts = {
-			ensure_installed = M.tools,
-		},
-	},
+		dependencies = {
+			{
+				"mason-org/mason.nvim",
+				opts = {}
+			},
+		}
+	}
 }
