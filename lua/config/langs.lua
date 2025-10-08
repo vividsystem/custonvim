@@ -7,6 +7,7 @@ M.servers = {
 	["html"] = {},
 	["bashls"] = {},
 	["rust_analyzer"] = {},
+	jdtls = {},
 	gopls = {
 		settings = {
 			gopls = {
@@ -31,8 +32,18 @@ M.servers = {
 		},
 	},
 	clangd = {},
-	["tailwindcss"] = {},
-	pyright = {},
+	["tailwindcss"] = {
+		settings = {
+
+		}
+	},
+	["ruff"] = {
+		init_options = {
+			settings = {
+				configurationPreference = "filesystemFirst"
+			}
+		}
+	},
 	["lua_ls"] = {
 		settings = {
 			Lua = {
@@ -48,6 +59,7 @@ M.servers = {
 M.tools = {
 	"stylua",
 	"shellcheck",
+	"uv"
 }
 
 M.ensure_installed = require("util.tbl").get_keys(M.servers)
