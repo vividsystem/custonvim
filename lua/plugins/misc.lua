@@ -63,4 +63,7 @@ return {
 			require("leap").setup(opts)
 		end,
 	},
+	{
+		"wakatime/vim-wakatime"
+	}
 }
