@@ -42,4 +42,8 @@ return {
 		end,
 		ft = { "tex", "bib" },
 	},
+	{
+		"mechatroner/rainbow_csv",
+		ft = { "csv" }
+	}
 }
