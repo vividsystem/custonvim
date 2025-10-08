@@ -6,6 +6,25 @@ function M.on_attach(client, bufnr)
 	if client.server_capabilities.inlayHintProvider then
 		vim.lsp.inlay_hint.enable(true)
 	end
+	if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format({ async = false })
+      end,
+    })
+  end
+
+	if client.server_capabilities.documentHighlightProvider then
+		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+			buffer = bufnr,
+			callback = vim.lsp.buf.document_highlight,
+		})
+		vim.api.nvim_create_autocmd("CursorMoved", {
+			buffer = bufnr,
+			callback = vim.lsp.buf.clear_references,
+		})
+	end
 end
 
 function M.capabilities()
@@ -15,13 +34,11 @@ function M.capabilities()
 end
 
 function M.setupServers()
-	local lspconfig = require("lspconfig")
-	local default_capabilities =
-		require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 	for server, settings in pairs(config.servers) do
-		settings.capabilities = settings.capabilities or default_capabilities
+		settings.capabilities = settings.capabilities or M.capabilities()
 		settings.on_attach = settings.on_attach or M.on_attach
-		lspconfig[server].setup(settings)
+		vim.lsp.config(server, settings)
+		vim.lsp.enable(server)
 	end
 end
 
