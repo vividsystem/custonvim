@@ -11,8 +11,8 @@ return {
 			},
 		},
 		opts = {},
-		config = function(opts)
-			dap = require("dap")
+		config = function()
+			local dap = require("dap")
 			dap.adapters.delve = {
 				type = "server",
 				port = "${port}",
