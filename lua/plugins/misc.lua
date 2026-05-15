@@ -56,14 +56,10 @@ return {
 		end,
 	},
 	{
-		"ggandor/leap.nvim",
+		url = "https://codeberg.org/andyg/leap.nvim",
 		opts = {},
-		config = function(opts)
-			require("leap").set_default_keymaps()
-			require("leap").setup(opts)
-		end,
 	},
 	{
-		"wakatime/vim-wakatime"
-	}
+		"wakatime/vim-wakatime",
+	},
 }
