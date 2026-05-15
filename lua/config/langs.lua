@@ -37,6 +37,7 @@ M.servers = {
 
 		}
 	},
+	pylsp = {},
 	["ruff"] = {
 		init_options = {
 			settings = {
