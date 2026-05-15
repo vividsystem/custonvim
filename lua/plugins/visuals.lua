@@ -1,4 +1,5 @@
 return {
+	-- bottom bar
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
@@ -26,6 +27,7 @@ return {
 			},
 		},
 	},
+	-- top bar
 	{
 		"akinsho/bufferline.nvim",
 		version = "*",
@@ -36,14 +38,9 @@ return {
 			},
 		},
 	},
+	-- breadcrumbs at the top of buffer
 	{
-		"utilyre/barbecue.nvim",
-		name = "barbecue",
-		version = "*",
-		dependencies = {
-			"SmiteshP/nvim-navic",
-			"nvim-tree/nvim-web-devicons", -- optional dependency
-		},
+		"Bekaboo/dropbar.nvim",
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
