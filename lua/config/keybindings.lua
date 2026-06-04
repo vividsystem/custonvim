@@ -70,7 +70,7 @@ Map("n", "<leader>fx", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer" })
 
 -- debug/diagnostics
 local dap = require("dap")
-Map("n", "<leader>do", "<cmd>Trouble diagnostics toggle focus=false", { desc = "show diagnostics" })
+Map("n", "<leader>do", "<cmd>Trouble diagnostics toggle focus=false<cr>", { desc = "show diagnostics" })
 Map("n", "<leader>db", dap.toggle_breakpoint, { desc = "toggle breakpoint" })
 Map("n", "<leader>dc", dap.continue, { desc = "continue/start debugging" })
 Map("n", "<leader>dr", dap.repl.toggle, { desc = "toggle repl" })
@@ -83,7 +83,7 @@ Map("n", "<leader>gi", vim.lsp.buf.implementation, { desc = "Implementation" })
 -- LSP
 Map("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename" })
 
-Map("n", "<leader>vd", "<cmd>DiffviewToggle", { desc = "Diffs" })
+Map("n", "<leader>vd", "<cmd>DiffviewToggle<cr>", { desc = "Diffs" })
 Map("n", "<leader>vo", "<cmd>Neogit<cr>", { desc = "Open" })
 
 -- TODO: add undotree keybind
