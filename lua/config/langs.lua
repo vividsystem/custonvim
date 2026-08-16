@@ -33,17 +33,15 @@ M.servers = {
 	},
 	clangd = {},
 	["tailwindcss"] = {
-		settings = {
-
-		}
+		settings = {},
 	},
 	pylsp = {},
 	["ruff"] = {
 		init_options = {
 			settings = {
-				configurationPreference = "filesystemFirst"
-			}
-		}
+				configurationPreference = "filesystemFirst",
+			},
+		},
 	},
 	["lua_ls"] = {
 		settings = {
@@ -55,12 +53,13 @@ M.servers = {
 		},
 	},
 	texlab = {},
+	eslint = {},
 }
 
 M.tools = {
 	"stylua",
 	"shellcheck",
-	"uv"
+	"uv",
 }
 
 M.ensure_installed = require("util.tbl").get_keys(M.servers)
