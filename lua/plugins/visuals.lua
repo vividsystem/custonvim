@@ -1,3 +1,5 @@
+local config = require("config.langs")
+
 return {
 	-- bottom bar
 	{
@@ -46,19 +48,15 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
 		build = ":TSUpdate",
-		config = function()
-			local configs = require("nvim-treesitter.configs")
-			configs.setup({
-				modules = {},
-				ensure_installed = { "c", "lua", "bash", "html", "typescript", "go", "gomod" },
-				sync_install = false,
-				ignore_install = { "latex" },
-				auto_install = true,
-				highlight = {
-					enable = true,
-				},
-			})
-		end,
+		init = function()
+			local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+			local parsersToInstall = vim.iter(config.langs)
+					:filter(function(parser)
+						return not vim.tbl_contains(alreadyInstalled, parser)
+					end)
+					:totable()
+			require('nvim-treesitter').install(parsersToInstall)
+		end
 	},
 	{
 		"ray-x/guihua.lua",

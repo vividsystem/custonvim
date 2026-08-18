@@ -55,6 +55,7 @@ M.servers = {
 		},
 	},
 	texlab = {},
+	qmlls = {}
 }
 
 M.tools = {
@@ -65,5 +66,9 @@ M.tools = {
 
 M.ensure_installed = require("util.tbl").get_keys(M.servers)
 table.insert(M.ensure_installed, tools)
+
+M.langs = {
+	"typescript", "html", "bash", "rust", "java", "go", "c", "css", "python", "lua", "latex", "bibtex",
+}
 
 return M
