@@ -54,6 +54,7 @@ M.servers = {
 	},
 	texlab = {},
 	qmlls = {},
+	eslint = {},
 }
 
 M.tools = {
