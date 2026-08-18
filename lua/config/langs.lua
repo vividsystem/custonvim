@@ -33,17 +33,15 @@ M.servers = {
 	},
 	clangd = {},
 	["tailwindcss"] = {
-		settings = {
-
-		}
+		settings = {},
 	},
 	pylsp = {},
 	["ruff"] = {
 		init_options = {
 			settings = {
-				configurationPreference = "filesystemFirst"
-			}
-		}
+				configurationPreference = "filesystemFirst",
+			},
+		},
 	},
 	["lua_ls"] = {
 		settings = {
@@ -55,20 +53,31 @@ M.servers = {
 		},
 	},
 	texlab = {},
-	qmlls = {}
+	qmlls = {},
 }
 
 M.tools = {
 	"stylua",
 	"shellcheck",
-	"uv"
+	"uv",
 }
 
 M.ensure_installed = require("util.tbl").get_keys(M.servers)
 table.insert(M.ensure_installed, tools)
 
 M.langs = {
-	"typescript", "html", "bash", "rust", "java", "go", "c", "css", "python", "lua", "latex", "bibtex",
+	"typescript",
+	"html",
+	"bash",
+	"rust",
+	"java",
+	"go",
+	"c",
+	"css",
+	"python",
+	"lua",
+	"latex",
+	"bibtex",
 }
 
 return M

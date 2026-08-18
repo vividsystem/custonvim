@@ -7,13 +7,13 @@ function M.on_attach(client, bufnr)
 		vim.lsp.inlay_hint.enable(true)
 	end
 	if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format({ async = false })
-      end,
-    })
-  end
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.buf.format({ async = false })
+			end,
+		})
+	end
 
 	if client.server_capabilities.documentHighlightProvider then
 		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
@@ -41,7 +41,6 @@ function M.setupServers()
 		vim.lsp.enable(server)
 	end
 end
-
 
 return {
 	{
@@ -73,13 +72,13 @@ return {
 	{
 		"mason-org/mason-lspconfig.nvim",
 		opts = {
-			ensure_installed = config.ensure_installed
+			ensure_installed = config.ensure_installed,
 		},
 		dependencies = {
 			{
 				"mason-org/mason.nvim",
-				opts = {}
+				opts = {},
 			},
-		}
-	}
+		},
+	},
 }
