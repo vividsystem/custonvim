@@ -7,3 +7,10 @@ vim.api.nvim_set_hl(0, "GitBlameVirtualText", {
 	fg = color.get_color("Comment", "fg"),
 	bg = color.get_color("CursorLine", "bg"),
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		pcall(vim.treesitter.start)
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	end,
+})
